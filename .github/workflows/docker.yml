@@ -14,6 +14,9 @@ jobs:
 
       - name: Set up Java
         uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          version: '17'
 
       - name: Allow mvn execute
         run: chmod +x mvnw
