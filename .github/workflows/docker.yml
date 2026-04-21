@@ -15,6 +15,9 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
 
+      - name: Allow mvn execute
+        run: chmod +x mvnw
+
       - name: Build Jar
         run: ./mvnw clean package
 
