@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: action/setup-java@v4
+        uses: actions/setup-java@v4
 
       - name: Build Jar
         run: ./mvnw clean package
