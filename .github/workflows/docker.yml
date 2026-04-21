@@ -1,0 +1,24 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: action/checkout@v4
+
+      - name: Set up Java
+        uses: action/setup-java@v4
+
+      - name: Build Jar
+        run: ./mvnw clean package
+
+      - name: Build image
+        run: docker build -t user-app .
+
+
