@@ -18,13 +18,19 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Allow mvn execute
+      - name: Make mvn execute
         run: chmod +x mvnw
 
       - name: Build Jar
         run: ./mvnw clean package
 
-      - name: Build image
-        run: docker build -t user-app .
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD}}" | docker login -u "${{ secrets.DOCKER_USERNAME}}" --password-stdin
+
+      - name: Build and tag image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME}}/user-app:latest .
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/user-app:latest
 
 
